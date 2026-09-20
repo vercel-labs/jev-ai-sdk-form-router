@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - "@ai-sdk/*"
+  - "@vercel/*"
+  - ai
