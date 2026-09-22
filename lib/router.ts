@@ -23,7 +23,7 @@ export interface RoutingDecision {
   /** Final registered owner, which may differ from Jev's original choice. */
   destination: Destination;
   /** Model whose answer supplies the final destination. */
-  model: "typesafe-ai/jev" | "openai/gpt-5.6-luna-fast";
+  model: "typesafe-ai/jev" | "openai/gpt-6-luna-fast";
   /** Inclusive acceptance floor for unrounded Jev confidence, expressed from 0 to 1. */
   threshold: number;
   /** Reason for requesting a fallback, or null when Jev was accepted. */
@@ -159,7 +159,7 @@ export const routeSubmission = async (
     abortSignal: AbortSignal.timeout(LUNA_TIMEOUT_MS),
     maxOutputTokens: 1000,
     maxRetries: 1,
-    model: models.luna ?? "openai/gpt-5.6-luna-fast",
+    model: models.luna ?? "openai/gpt-6-luna-fast",
     output: Output.object({
       schema: z.object({
         destination: z.enum(
@@ -176,6 +176,6 @@ export const routeSubmission = async (
   return {
     ...decision,
     destination: findDestination(example, output.destination),
-    model: "openai/gpt-5.6-luna-fast",
+    model: "openai/gpt-6-luna-fast",
   };
 };

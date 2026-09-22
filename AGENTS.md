@@ -34,7 +34,7 @@ Forms and samples can be inspected without credentials. Live routing requires Ga
 
 - Infer ownership from the complete submission. Do not replace this with a user-selected team or a deterministic company-size rule.
 - Accept Jev only when its registered answer has valid, unrounded confidence at least `0.95` from `providerMetadata.typesafe.confidence.destination`. Never substitute selected-option probability for confidence.
-- Low, missing, or invalid confidence, or a Jev failure, invokes `openai/gpt-5.6-luna-fast`. Pass the same state and criteria without Jev's answer. The fallback destination is final, including disagreements. Do not invent a comparable fallback confidence or add another review loop.
+- Low, missing, or invalid confidence, or a Jev failure, invokes `openai/gpt-6-luna-fast`. Pass the same state and criteria without Jev's answer. The fallback destination is final, including disagreements. Do not invent a comparable fallback confidence or add another review loop.
 - Validate model destinations against the current example. Keep provider timeouts and retries bounded. If routing fails, send no email.
 - Keep Jev statistics attached to its original answer when displaying a fallback decision. Samples populate inputs and must not supply prerecorded results.
 - Email delivery requires explicit opt-in and valid configuration for every destination on that form. Resolve the recipient from the server map and use only the validated submitter email as `replyTo`.

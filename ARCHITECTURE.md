@@ -42,7 +42,7 @@ flowchart TD
     Router --> Jev[Jev through AI Gateway]
     Jev --> Gate{Valid confidence at least 0.95?}
     Gate -->|Yes| Final[Final destination]
-    Gate -->|No, missing metadata, or evaluation error| Fallback[GPT-5.6 Luna Fast through AI Gateway]
+    Gate -->|No, missing metadata, or evaluation error| Fallback[GPT-6 Luna Fast through AI Gateway]
     Fallback -->|Valid destination| Final
     Fallback -->|Failure| Error[Safe error, no email]
     Final --> Email[Render React Email preview]
@@ -72,7 +72,7 @@ The registry supplies one choice per team/specialty combination. Both models rec
 
 Jev uses AI SDK's `experimental_evaluate` with `typesafe-ai/jev`. The app accepts a registered destination only when `providerMetadata.typesafe.confidence.destination` is a valid number from 0 to 1 and its unrounded value is at least `0.95`.
 
-Low, missing, or invalid confidence, or a failed Jev evaluation, invokes `openai/gpt-5.6-luna-fast` through `generateText` and `Output.object`. Its schema allows only the current example's destinations. That answer becomes final even if it disagrees with Jev. There is no generated fallback confidence or further review loop.
+Low, missing, or invalid confidence, or a failed Jev evaluation, invokes `openai/gpt-6-luna-fast` through `generateText` and `Output.object`. Its schema allows only the current example's destinations. That answer becomes final even if it disagrees with Jev. There is no generated fallback confidence or further review loop.
 
 Selected-option probability and confidence are separate statistics. Available Jev statistics describe Jev's original decision even when the fallback chooses another owner. Jev has a 12-second timeout and the fallback has a 25-second timeout, each with one SDK retry for retryable failures. Timings measure elapsed calls, including retries. A fallback failure returns a routing error and sends no email.
 
@@ -142,5 +142,5 @@ Keep the current workflow synchronous unless a task explicitly needs background 
 | Triage | A registered owner for unclear, unsupported, or insufficiently specified requests |
 | Confidence | TypeSafe metadata used by the application's acceptance threshold |
 | Selected probability | Jev's probability for its chosen destination, displayed separately from confidence |
-| Fallback | An independent decision from `openai/gpt-5.6-luna-fast` |
+| Fallback | An independent decision from `openai/gpt-6-luna-fast` |
 | OIDC | OpenID Connect, used for Vercel-provided Gateway credentials |

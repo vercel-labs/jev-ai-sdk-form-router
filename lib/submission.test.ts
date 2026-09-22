@@ -89,7 +89,7 @@ describe("submission workflow", () => {
     });
     expect(result).toMatchObject({
       message: expect.stringContaining(
-        "denied access to openai/gpt-5.6-luna-fast"
+        "denied access to openai/gpt-6-luna-fast"
       ),
       status: "error",
     });
@@ -234,7 +234,7 @@ describe("submission workflow", () => {
           ...decision,
           destination: example.destinations[2],
           fallbackReason: "low-confidence",
-          model: "openai/gpt-5.6-luna-fast",
+          model: "openai/gpt-6-luna-fast",
         }),
       contactRecipients
     );
@@ -309,7 +309,7 @@ describe("Gateway authentication", () => {
             id: confidence < 0.95 ? "support_access" : "billing_invoices",
           },
           model:
-            confidence < 0.95 ? "openai/gpt-5.6-luna-fast" : "typesafe-ai/jev",
+            confidence < 0.95 ? "openai/gpt-6-luna-fast" : "typesafe-ai/jev",
         },
         delivery: { status: "preview" },
         status: "success",

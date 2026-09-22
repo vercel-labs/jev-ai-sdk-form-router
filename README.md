@@ -1,6 +1,6 @@
 # Jev x AI SDK Form Router
 
-Three forms use [Jev](https://vercel.com/i/what-is-jev) to route submissions by context, with `openai/gpt-5.6-luna-fast` handling uncertain or failed evaluations. Includes editable samples, routing details, and optional email delivery.
+Three forms use [Jev](https://vercel.com/i/what-is-jev) to route submissions by context, with `openai/gpt-6-luna-fast` handling uncertain or failed evaluations. Includes editable samples, routing details, and optional email delivery.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fjev-ai-sdk-form-router)
 
@@ -30,7 +30,7 @@ pnpm install
 
 ### 2. Configure AI Gateway
 
-Routing a submission, including a sample, makes live model calls and requires AI Gateway access to both `typesafe-ai/jev` and `openai/gpt-5.6-luna-fast`. Choose one of the authentication options below, or skip this step to explore the forms and load sample inputs without generating routing results.
+Routing a submission, including a sample, makes live model calls and requires AI Gateway access to both `typesafe-ai/jev` and `openai/gpt-6-luna-fast`. Choose one of the authentication options below, or skip this step to explore the forms and load sample inputs without generating routing results.
 
 **API Key**
 
@@ -71,7 +71,7 @@ Open [localhost:3000](http://localhost:3000). The home page redirects to `/leads
 1. Zod validates the submission against the fields in [lib/examples.ts](lib/examples.ts).
 2. Jev evaluates the complete submission using AI SDK’s `experimental_evaluate` and selects an allowed team/specialty combination.
 3. The app accepts Jev’s choice when its confidence is **at least 95%**.
-4. If confidence is lower, missing, or invalid, or Jev fails, `openai/gpt-5.6-luna-fast` independently evaluates the same submission and criteria using `generateText` and `Output.object`. Its choice becomes final.
+4. If confidence is lower, missing, or invalid, or Jev fails, `openai/gpt-6-luna-fast` independently evaluates the same submission and criteria using `generateText` and `Output.object`. Its choice becomes final.
 5. The result includes the destination, deciding model, Jev statistics, model timings, and an email preview.
 
 **Confidence and selected-option probability are separate metrics.** The threshold uses the unrounded value of `providerMetadata.typesafe.confidence.destination`. Jev’s displayed statistics remain attached to its original evaluation when the fallback model makes the final decision.

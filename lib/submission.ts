@@ -202,7 +202,7 @@ export const processSubmission = async (
     if (forbidden.success) {
       return {
         message:
-          "AI Gateway denied access to openai/gpt-5.6-luna-fast. Check this Gateway account’s model access and paid-credit configuration, then try again. No email was sent.",
+          "AI Gateway denied access to openai/gpt-6-luna-fast. Check this Gateway account’s model access and paid-credit configuration, then try again. No email was sent.",
         status: "error",
       };
     }

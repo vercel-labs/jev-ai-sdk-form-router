@@ -85,7 +85,7 @@ describe("routing policy", () => {
         luna: mockLuna(),
       });
       expect(result.destination.id).toBe("support_access");
-      expect(result.model).toBe("openai/gpt-5.6-luna-fast");
+      expect(result.model).toBe("openai/gpt-6-luna-fast");
       expect(result.fallbackReason).toBe("low-confidence");
       expect(result.jev?.destination).toBe("billing_refunds");
     }
@@ -118,7 +118,7 @@ describe("routing policy", () => {
       luna: mockLuna("billing_refunds"),
     });
     expect(result.destination.id).toBe("billing_refunds");
-    expect(result.model).toBe("openai/gpt-5.6-luna-fast");
+    expect(result.model).toBe("openai/gpt-6-luna-fast");
   });
 
   it("uses Luna after a Jev failure", async () => {
